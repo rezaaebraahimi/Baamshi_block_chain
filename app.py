@@ -16,7 +16,7 @@ def updatehash(*args):
 
 
 class Block():
-    data = ''
+    data = None
     hash = None
     nonce = 0
     pre_hash = "0" * 64
@@ -35,8 +35,8 @@ class Block():
      
     
     def __str__(self):
-        return str("Block Number: %s \nHash: %s \nPreHash: %s \nNonce: %s"
-                 %(self.number, self.hash(), self.pre_hash, self.nonce))
+        return str("Block Number: %s \nHash: %s \nPreHash: %s \nData: %s \nNonce: %s"
+                 %(self.number, self.hash(), self.pre_hash, self.data, self.nonce))
 
     
 
@@ -104,8 +104,7 @@ def result():
                     }]
     
     blc = [""]
-    
-    num = 0
+    num = Block(number='')
     for data in database:
         num += 1
         blockchain.mine(Block(data,num))

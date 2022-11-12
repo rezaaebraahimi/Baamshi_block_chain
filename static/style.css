@@ -1,7 +1,6 @@
 html,body{
     margin-inline: auto;
     padding-inline: auto;
-    display: flex;
     list-style: none;
     box-sizing: border-box;
     font-family: 'Rubik';

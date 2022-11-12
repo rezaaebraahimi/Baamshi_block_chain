@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from hashlib import sha256 
 
+
 app = Flask(__name__)   
 
 
@@ -33,7 +34,7 @@ class Block():
      
     
     def __str__(self):
-        return str("Block Number: %s\nHash: %s\nPreHash: %s\nData: %s\nNonce: %s\n"
+        return str("Block Number: %s \nHash: %s \nPreHash: %s \nData: %s \nNonce: %s"
                  %(self.number, self.hash(), self.pre_hash, self.data, self.nonce))
 
     
@@ -79,8 +80,6 @@ class Blockchain():
 
 
 
-
-
 @app.route("/")
 @app.route('/home')
 def home():
@@ -97,8 +96,9 @@ def result():
     name = output["name"]
     family = output["family"]
     age = output["age"]
-    database     = [{"Name": name,
-                     "Family": family,
+    
+    database     = [{"Nickname": name,
+                     "Lastname": family,
                      "Age": age
                     }]
     

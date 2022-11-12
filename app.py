@@ -22,9 +22,9 @@ class Block():
     pre_hash = "0" * 64
     
     
-    def __init__(self, data, number=0):
+    def __init__(self, data, number):
         self.data = data
-        self.number = number
+        self.number = int(number)
     
     
     def hash(self):

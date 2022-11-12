@@ -88,9 +88,15 @@ def home():
 
 
 
+
+
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     blockchain   = Blockchain()
+    database     = [{"Nickname": '',
+                     "Lastname": '',
+                     "Age": ''
+                    }]
     
     output = request.form.to_dict()
     
@@ -98,10 +104,10 @@ def result():
     family = output["family"]
     age = output["age"]
     
-    database     = {"Nickname": name,
+    database     = [{"Nickname": name,
                      "Lastname": family,
                      "Age": age
-                    }
+                    }]
     
     blc = [""]
     

@@ -16,7 +16,7 @@ def updatehash(*args):
 
 
 class Block():
-    data = None
+    data = ''
     hash = None
     nonce = 0
     pre_hash = "0" * 64
@@ -85,8 +85,6 @@ class Blockchain():
 @app.route('/home')
 def home():
     return render_template("index.html")
-
-
 
 
 

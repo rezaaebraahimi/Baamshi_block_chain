@@ -104,7 +104,7 @@ def result():
                     }]
     
     blc = [""]
-    num = Block(number='')
+    num = 0
     for data in database:
         num += 1
         blockchain.mine(Block(data,num))

@@ -109,7 +109,7 @@ def result():
         num += 1
         blockchain.mine(Block(data,num))
     for _block in blockchain.chain:
-        blc = Block(data).__str__()
+        blc = Block(data,num).__str__()
         return render_template("index.html", blc=blc)
     
        

@@ -98,10 +98,10 @@ def result():
     family = output["family"]
     age = output["age"]
     
-    database     = [{"Nickname": name,
+    database     = {"Nickname": name,
                      "Lastname": family,
                      "Age": age
-                    }]
+                    }
     
     blc = [""]
     

@@ -1,0 +1,48 @@
+<html> 
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" type="text/css" href="../static/style.css"> 
+
+
+
+
+	</head>
+	
+	<body>
+
+        <form class="grid" action="/result" method="POST">
+
+          {% if blc %}
+            <center>
+              <h3 style="color: blue;" class="let_space">{{blc}}</h3>
+            </center> 
+
+          {% endif %}
+           
+          <label for="name">Nickname:</label>
+          <input type="text" id="name" name="name">
+
+          <label for="family">Lastname:</label>
+          <input type="text" id="family" name="family">
+
+          <label for="age">Age:</label>
+          <input type="text" id="age" name="age">
+
+          <center><input class="file_submit" type="Submit"></center>
+
+        </form>
+
+        
+
+        
+
+        
+        <br>
+        <br>
+        <br>
+
+
+    </body>
+
+</html>

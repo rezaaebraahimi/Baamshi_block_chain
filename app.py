@@ -35,8 +35,8 @@ class Block():
      
     
     def __str__(self):
-        return str("Block Number: %s \nHash: %s \nPreHash: %s \nData: %s \nNonce: %s"
-                 %(self.number, self.hash(), self.pre_hash, self.data, self.nonce))
+        return str("Block Number: %s \nHash: %s \nPreHash: %s \nNonce: %s"
+                 %(self.number, self.hash(), self.pre_hash, self.nonce))
 
     
 
@@ -110,11 +110,7 @@ def result():
         num += 1
         blockchain.mine(Block(data,num))
     for _block in blockchain.chain:
-        blc = _block
-        database = [{"Nickname": '',
-                     "Lastname": '',
-                     "Age": ''
-                    }]
+        blc = Block(data).__str__()
         return render_template("index.html", blc=blc)
     
        

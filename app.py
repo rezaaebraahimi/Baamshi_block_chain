@@ -93,10 +93,6 @@ def home():
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     blockchain   = Blockchain()
-    database     = [{"Nickname": '',
-                     "Lastname": '',
-                     "Age": ''
-                    }]
     
     output = request.form.to_dict()
     
@@ -117,6 +113,10 @@ def result():
         blockchain.mine(Block(data,num))
     for _block in blockchain.chain:
         blc = _block
+        database = [{"Nickname": '',
+                     "Lastname": '',
+                     "Age": ''
+                    }]
         return render_template("index.html", blc=blc)
     
        

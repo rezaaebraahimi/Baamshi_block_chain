@@ -1,4 +1,8 @@
+from flask import Flask, render_template, request
 from hashlib import sha256 
+
+app = Flask(__name__)   
+
 
 def updatehash(*args):
     hashing_text = ""; h = sha256()
@@ -8,7 +12,6 @@ def updatehash(*args):
     h.update(hashing_text.encode('utf-8'))
     return h.hexdigest()
 
-        
 
 class Block():
     data = None
@@ -73,35 +76,45 @@ class Blockchain():
                 return False   
 
         return True
+
+
+
+
+
+@app.route("/")
+@app.route('/home')
+def home():
+    return render_template("index.html")
+
+
+
+@app.route('/result',methods=['POST', 'GET'])
+def result():
+    blockchain   = Blockchain()
     
-
-class Main():
-    def __init__(self, _name, _family, _age):
-        self._name   = _name
-        self._family = _family
-        self._age    = _age
-        
-        blockchain   = Blockchain()
-        
-        _name   = input("Name: ")
-        _family = input("Family: ")
-        _age    = input("Age: ")
-        
-        database     = [{"Name": _name,
-                         "Family": _family,
-                         "Age": _age
-                       }]
-        
-        num = 0
-        for data in database:
-            num += 1
-            blockchain.mine(Block(data,num))
-        
-        if blockchain.isValid() == True:   
-            for block in blockchain.chain:
-                print(block)    
+    output = request.form.to_dict()
+    
+    name = output["name"]
+    family = output["family"]
+    age = output["age"]
+    database     = [{"Name": name,
+                     "Family": family,
+                     "Age": age
+                    }]
+    
+    blc = [""]
+    
+    num = 0
+    for data in database:
+        num += 1
+        blockchain.mine(Block(data,num))
+    for _block in blockchain.chain:
+        blc = _block
+        return render_template("index.html", blc=blc)
+    
+       
 
 
-
-if __name__ == "__main__":  
-    Main(_name='',_family='', _age="")
+if __name__ == "__main__":
+    app.run(debug=True)
+    

@@ -20,23 +20,25 @@ class Block():
     hash = None
     nonce = 0
     pre_hash = "0" * 64
-    
+
     
     def __init__(self, data, number):
         self.data = data
         self.number = int(number)
+
     
     
     def hash(self):
         return updatehash(self.pre_hash,
                           self.number,
                           self.data,
-                          self.nonce)
-     
+                          self.nonce,
+                          )
+        
     
     def __str__(self):
-        return str("\nHash: %s \nNonce: %s \nData: %s"
-                 %( self.hash(), self.nonce, self.data))
+        return str("\nHash: %s \nNonce: %s \nNumber: %s \nData: %s "
+                 %( self.hash(), self.nonce, self.number, self.data))
 
     
 
@@ -81,27 +83,28 @@ class Blockchain():
 
 
 
+
+        
+
+
+
 @app.route("/")
 @app.route('/home')
 def home():
     return render_template("index.html")
 
 
-
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     blockchain   = Blockchain()
-    
     output = request.form.to_dict()
-    
     name = output["name"]
     family = output["family"]
     age = output["age"]
-    
-    database     = [{"Nickname": name,
-                     "Lastname": family,
-                     "Age": age
-                    }]
+    iq = output["iq"]
+    mbti = output["mbti"]
+
+    database     = [f"\nNickname: {name} \nLastname: {family}  \nAge: {age} \nIQ Score: {iq} \nMBTI: {mbti}"]
     
     blc = [""]
     num = 0
@@ -112,7 +115,7 @@ def result():
         blc = Block(data,num).__str__()
         return render_template("index.html", blc=blc)
     
-       
+    
 
 
 if __name__ == "__main__":

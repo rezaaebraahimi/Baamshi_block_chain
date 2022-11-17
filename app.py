@@ -16,27 +16,29 @@ def updatehash(*args):
 
 
 class Block():
-    data = None
-    hash = None
-    nonce = 0
-    pre_hash = "0" * 64
-    
-    
-    def __init__(self, data, number):
+
+    def __init__(self, data=[],number = 0, nonce = 0,pre_hash = 0 *64):
         self.data = data
-        self.number = int(number)
-    
-    
+        self.number = number
+        self.nonce = nonce
+        self.pre_hash = pre_hash    
+
     def hash(self):
         return updatehash(self.pre_hash,
                           self.number,
                           self.data,
-                          self.nonce)
-     
+                          self.nonce,
+                          )
+        
+    
+    def add_numb(self):
+        add_number = self.number + 1
+        return add_number
+        
     
     def __str__(self):
-        return str("\nHash: %s \nNonce: %s \nData: %s"
-                 %( self.hash(), self.nonce, self.data))
+        return str("\nHash: %s \nNonce: %s \nNumber: %s \nData: %s"
+                 %( self.hash(), self.nonce, self.add_numb(), self.data))
 
     
 
@@ -44,8 +46,8 @@ class Blockchain():
     difficulty = 0
     
     
-    def __init__(self, chain=[]):
-        self.chain = chain
+    def __init__(self ):
+        self.chain = []
      
         
     def add(self, block):
@@ -87,32 +89,29 @@ def home():
     return render_template("index.html")
 
 
-
 @app.route('/result',methods=['POST', 'GET'])
 def result():
-    blockchain   = Blockchain()
-    
+    blockchain = Blockchain()
+    block = Block()
     output = request.form.to_dict()
-    
     name = output["name"]
     family = output["family"]
     age = output["age"]
-    
-    database     = [{"Nickname": name,
-                     "Lastname": family,
-                     "Age": age
-                    }]
+    iq = output["iq"]
+    mbti = output["mbti"]
+
+    database = [f"\nNickname: {name} \nLastname: {family}  \nAge: {age} \nIQ Score: {iq} \nMBTI: {mbti}"]
     
     blc = [""]
-    num = 0
+    
     for data in database:
-        num += 1
-        blockchain.mine(Block(data,num))
+        num = block.add_numb()
+        blockchain.mine(Block(data, num))
+        blockchain.add(Block(data, num))
     for _block in blockchain.chain:
-        blc = Block(data,num).__str__()
+        blc = Block(data, num).__str__()
         return render_template("index.html", blc=blc)
     
-       
 
 
 if __name__ == "__main__":

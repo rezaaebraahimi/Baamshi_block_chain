@@ -97,6 +97,17 @@ label{
     color: rgb(89, 236, 255);
 
 }
+
+.iq {
+    border: 5px solid rgb(255, 0, 140);
+    border-radius: 5px;
+    padding: 1em;
+    font-size: 24;
+    overflow: hidden;
+    background: #000;
+    color: rgb(89, 236, 255);
+}
+
 .let_space1{
     text-align: center;
     align-items: center;

@@ -78,6 +78,11 @@ class Blockchain():
 
 
 
+low_iq = list(range(40, 70, 1))
+average_iq = list(range(70, 120, 1))
+hi_iq = list(range(120, 161, 1))
+
+
 @app.route("/")
 @app.route('/home')
 def home():
@@ -92,8 +97,18 @@ def result():
     name = output["name"]
     family = output["family"]
     age = output["age"]
-    iq = output["iq"]
+    iq = int(output["iq"])
     mbti = output["mbti"]
+    
+    if iq in low_iq:
+        iq_level = "Your IQ  Level is LOW!!!"
+    elif iq in average_iq:
+        iq_level = "Your IQ  Level is Average!"
+    elif iq in hi_iq:
+        iq_level = "Your IQ  Level is High!"
+    else:
+        iq_level = "Your IQ Level is not in human range!"
+    
     
     block.data = [f"{name}", f"{family}", f"{age}", f"{iq}", f"{mbti}"]
 
@@ -102,7 +117,7 @@ def result():
         block.data += block_data
         blockchain.mine()
         blockchain.add()
-        return render_template("hash.html", database=block.data)
+        return render_template("hash.html", database=block.data,iq_level=iq_level)
     
 
 

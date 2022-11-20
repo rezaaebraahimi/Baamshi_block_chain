@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+  </head>
+
+  <body>
+
+      
+      <form class="grid" action="/result" method="POST">
+        <header>
+          <h1 class="baamshi">Baamshi Blockchain</h1>
+  
+        </header>
+
+      {% if database %}
+        <p class="let_space1">
+          Your info successfully encrypted!
+        </p>
+        <ul class="let_space">
+            <li>Nickname: {{ database[0] }}</li>
+            <li>Lastname: {{ database[1] }}</li>
+            <li>Age: {{ database[2] }}</li>
+            <li>IQ Score: {{ database[3] }}</li>
+            <li>Personality Type (MBTI): {{ database[4] }}</li>
+            <li>Block Number: {{ database[5] }}</li>
+            <li>Hash: {{ database[6] }}</li>
+            <li>Nonce: {{ database[7] }}</li>
+            <li>PreHash: {{ database[8] }}</li>
+        </ul>
+      {% endif %}
+      </form>
+
+    <br />
+    <br />
+    <br />
+  </body>
+</html>

@@ -16,8 +16,7 @@ def updatehash(*args):
 
 
 class Block():
-
-    def __init__(self, data=[],number = 0, nonce = 0,pre_hash = 0 *64):
+    def __init__(self, data=None,number=0, nonce = 0,pre_hash = "0" *64):
         self.data = data
         self.number = number
         self.nonce = nonce
@@ -34,31 +33,27 @@ class Block():
     def add_numb(self):
         add_number = self.number + 1
         return add_number
-        
-    
-    def __str__(self):
-        return str("\nHash: %s \nNonce: %s \nNumber: %s \nData: %s"
-                 %( self.hash(), self.nonce, self.add_numb(), self.data))
+
 
     
 
 class Blockchain():
-    difficulty = 0
+    difficulty = 3
+
     
-    
-    def __init__(self ):
+    def __init__(self):
         self.chain = []
-     
         
-    def add(self, block):
+        
+    def add(self, block=Block()):
         self.chain.append(block)
         
         
-    def remove(self, block):
+    def remove(self, block=Block()):
         self.chain.remove(block)
       
 
-    def mine(self,block):
+    def mine(self,block=Block()):
         try:
             block.pre_hash = self.chain[-1].hash()
         except IndexError:
@@ -99,18 +94,15 @@ def result():
     age = output["age"]
     iq = output["iq"]
     mbti = output["mbti"]
+    
+    block.data = [f"{name}", f"{family}", f"{age}", f"{iq}", f"{mbti}"]
 
-    database = [f"\nNickname: {name} \nLastname: {family}  \nAge: {age} \nIQ Score: {iq} \nMBTI: {mbti}"]
-    
-    blc = [""]
-    
-    for data in database:
-        num = block.add_numb()
-        blockchain.mine(Block(data, num))
-        blockchain.add(Block(data, num))
-    for _block in blockchain.chain:
-        blc = Block(data, num).__str__()
-        return render_template("index.html", blc=blc)
+    for data in block.data:
+        block_data = [block.add_numb(), block.hash(), block.nonce, block.pre_hash]
+        block.data += block_data
+        blockchain.mine()
+        blockchain.add()
+        return render_template("hash.html", database=block.data)
     
 
 

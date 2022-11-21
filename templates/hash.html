@@ -24,15 +24,13 @@
             <li>Age: {{ database[2] }}</li>
             <li>IQ Score: {{ database[3] }}</li>
             <li>Personality Type (MBTI): {{ database[4] }}</li>
-            <li>Block Number: {{ database[5] }}</li>
-            <li>Hash: {{ database[6] }}</li>
-            <li>Nonce: {{ database[7] }}</li>
-            <li>PreHash: {{ database[8] }}</li>
+            <li>Hash: {{ database[5] }}</li>
         </ul>
       {% endif %}
 
-      {% if iq_level %}
+      {% if iq_level and job_offer %}
         <p class="iq"> {{ iq_level }} </p>
+        <p class="iq">Good Job tittles for you based on your MBTI and IQ : {{ job_offer }} </p>
       {% endif %}
       </form>
 

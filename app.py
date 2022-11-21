@@ -22,6 +22,7 @@ class Block():
         self.nonce = nonce
         self.pre_hash = pre_hash    
 
+
     def hash(self):
         return updatehash(self.pre_hash,
                           self.number,
@@ -55,7 +56,7 @@ class Blockchain():
 
     def mine(self,block=Block()):
         try:
-            block.pre_hash = self.chain[-1].hash()
+            block.pre_hash = (self.chain[-1]).hash()
         except IndexError:
             pass
         
@@ -64,7 +65,9 @@ class Blockchain():
                 self.add(block)
                 break
             else:
+                self.remove(block)
                 block.nonce +=1
+                break
     
     
     def isValid(self):
@@ -79,13 +82,12 @@ class Blockchain():
 
 
 class Person():
-    def __init__(self, age, iq, mbti, name="", family=""):
+    def __init__(self, name, family, age, iq, mbti):
         self.name = name
         self.family = family
         self.age = int(age)
         self.iq = int(iq)
         self.mbti = mbti
-        pass
     
 
 
@@ -128,7 +130,7 @@ def result():
                     age = int(output["age"]),
                     iq = int(output["iq"]),
                     mbti = output["mbti"].lower())
- 
+
     if person.iq in low_iq:
         iq_level = "Your IQ  Level is LOW!!!"
     elif person.iq in average_iq:
@@ -138,7 +140,6 @@ def result():
     else:
         iq_level = "Your IQ Level is not in human range!"
 
-    
     if person.mbti == "istj" and person.iq in low_iq:
         job_offer = istj[2]
     elif person.mbti == "istj" and person.iq in average_iq:

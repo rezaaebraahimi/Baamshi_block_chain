@@ -42,7 +42,7 @@ isfp = ["Social Network Manager or Archaeologist","Glasses Maker or Veterinarian
 @app.route("/")
 @app.route('/home')
 def home():
-    return render_template("home.html")
+    return render_template("index.html")
 
 
 @app.route('/result',methods=['POST', 'GET'])

@@ -1,26 +1,20 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../static/home.css" />
   </head>
 
   <body>
-    <video id="videoBG" poster="https://raw.githubusercontent.com/rezaaebraahimi/Baamshi_block_chain/master/templates/1.jpg" autoplay muted loop>
-        <source src="https://raw.githubusercontent.com/rezaaebraahimi/Baamshi_block_chain/master/templates/1.mp4" type="video/mp4">
-    </video>
-    <div class="hash">
-      <h1 class="baamshi">Baamshi Blockchain</h1>
 
+      
       <form class="grid" action="/result" method="POST">
-        {% if blc %}
+        <header>
+          <h1 class="baamshi">Baamshi Blockchain</h1>
+          <h2 class="baamshi" id="text">Enter your information for encrypting !</h2>
+  
+        </header>
 
-        <h1 class="let_space1">
-          Your info successfully encrypted!
-        </h1>
-        <h2 class="let_space">{{blc}}</h2>
-
-        {% endif %}
 
         <label for="name">Nickname:</label>
         <input type="text" id="name" name="name" />
@@ -31,15 +25,14 @@
         <label for="age">Age:</label>
         <input type="text" id="age" name="age" />
 
-        <label for="iq">IQ score:</label>
+        <label for="iq">IQ Score:</label>
         <input type="text" id="iq" name="iq" />
 
-        <label for="mbti">Personality Type(MBTI):</label>
+        <label for="mbti">Personality Type (MBTI):</label>
         <input type="text" id="mbti" name="mbti" />
 
         <input class="file_submit" type="Submit" />
       </form>
-    </div>
 
     <br />
     <br />

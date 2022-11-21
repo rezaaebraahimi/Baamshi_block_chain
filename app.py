@@ -105,7 +105,7 @@ isfp = ["Social Network Manager or Archaeologist","Glasses Maker or Veterinarian
 @app.route("/")
 @app.route('/home')
 def home():
-    return render_template("index.html")
+    return render_template("home.html")
 
 
 @app.route('/result',methods=['POST', 'GET'])
@@ -232,7 +232,7 @@ def result():
     for data in block.data:
         block_data = [block.hash()]
         block.data += block_data
-        return render_template("hash.html", database=block.data,iq_level=iq_level,job_offer=job_offer)
+        return render_template("result.html", database=block.data,iq_level=iq_level,job_offer=job_offer)
     
 
 

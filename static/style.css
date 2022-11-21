@@ -5,7 +5,7 @@ html{
     height: 100vh;
 }
 body{
-    background-color: rgba(127, 255, 212, 0.534);
+    background-color: rgba(93, 255, 201, 0.404);
     align-items: center;
 }
 
@@ -86,36 +86,4 @@ label{
     margin-left: 125px;
     border-radius: 5px;
     color: #fff;
-}
-.let_space{
-    border: 5px solid rgb(255, 0, 140);
-    border-radius: 5px;
-    padding: 1em;
-    font-size: 18;
-    overflow: hidden;
-    background: #000;
-    color: rgb(89, 236, 255);
-
-}
-
-.iq {
-    border: 5px solid rgb(255, 0, 140);
-    border-radius: 5px;
-    padding: 1em;
-    font-size: 24;
-    overflow: hidden;
-    background: #000;
-    color: rgb(0, 255, 170);
-}
-
-.let_space1{
-    text-align: center;
-    align-items: center;
-    border: 5px solid rgb(255, 0, 140);
-    border-radius: 5px;
-    padding: 0.1em;
-    overflow: hidden;
-    font-size: 36;
-    background: rgb(0, 0, 0);
-    color: rgb(0, 255, 170);
 }

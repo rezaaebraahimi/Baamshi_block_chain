@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import os
-import Blockchain as Block_chain
+import Blockchain as B
 
 app = Flask(__name__)   
 
@@ -48,7 +48,7 @@ def home():
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     output = request.form.to_dict()
-    block = Block_chain.Block()
+    block = B.Block()
     person = Person(name = output["name"],
                     family = output["family"],
                     age = int(output["age"]),
@@ -173,6 +173,7 @@ def result():
     for data in block.data:
         block_data = [block.hash()]
         block.data += block_data
+ 
         return render_template("result.html", database=block.data,iq_level=iq_level,job_offer=job_offer)
     
 

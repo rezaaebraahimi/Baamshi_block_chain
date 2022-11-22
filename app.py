@@ -1,21 +1,11 @@
 from flask import Flask, render_template, request
 import os
 import Blockchain as B
+import json
 
 app = Flask(__name__)   
 
-
-
-class Person():
-    def __init__(self, name, family, age, iq, mbti):
-        self.name = name
-        self.family = family
-        self.age = int(age)
-        self.iq = int(iq)
-        self.mbti = mbti
-    
-
-
+   
 low_iq = list(range(40, 70, 1))
 average_iq = list(range(70, 120, 1))
 hi_iq = list(range(120, 161, 1))
@@ -48,13 +38,12 @@ def home():
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     output = request.form.to_dict()
-    block = B.Block()
-    person = Person(name = output["name"],
-                    family = output["family"],
-                    age = int(output["age"]),
-                    iq = int(output["iq"]),
-                    mbti = output["mbti"].lower())
-
+    person = B.Person(name = output["name"],
+                      family = output["family"],
+                      age = int(output["age"]),
+                      iq = int(output["iq"]),
+                      mbti = output["mbti"].lower())
+     
     if person.iq in low_iq:
         iq_level = "Your IQ  Level is LOW!!!"
     elif person.iq in average_iq:
@@ -164,20 +153,25 @@ def result():
         job_offer = "Your mbti isn't true, please Try Again!"
 
     
+    block = B.Block()
     block.data = [f"{person.name}",
-                  f"{person.family}",
-                  f"{person.age}",
-                  f"{person.iq}",
-                  f"{person.mbti}"]
-
+            f"{person.family}",
+            f"{person.age}",
+            f"{person.iq}",
+            f"{person.mbti}"]
+    
+    chain = B.Blockchain.chain
+    
     for data in block.data:
-        block_data = [block.hash()]
-        block.data += block_data
- 
+        block_hash = [block.hash()]
+        block_num = [block.add_numb()]
+        block.data += block_hash + block_num
+        chain.append(block.data)
+        with open ("block-data.json", "w") as f:
+            f.write(json.dumps(chain , indent=4))
         return render_template("result.html", database=block.data,iq_level=iq_level,job_offer=job_offer)
     
 
 
 if __name__ == "__main__":
     app.run(host:="0.0.0.0", port:=int(os.environ.get('PORT', 5000)))
-    

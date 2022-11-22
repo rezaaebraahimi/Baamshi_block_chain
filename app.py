@@ -5,6 +5,11 @@ import json
 
 app = Flask(__name__)   
 
+
+chain = B.Blockchain.chain
+genesis = ["Genesis", "First Block", "0", "160","Genius","0"*64, "Ready"]
+chain.append(genesis)
+
    
 low_iq = list(range(40, 70, 1))
 average_iq = list(range(70, 120, 1))
@@ -160,12 +165,12 @@ def result():
             f"{person.iq}",
             f"{person.mbti}"]
     
-    chain = B.Blockchain.chain
     
     for data in block.data:
         block_hash = [block.hash()]
-        block_num = [block.add_numb()]
-        block.data += block_hash + block_num
+        block.data += block_hash
+        block.pre_hash = [chain[-1][-2]]
+        block.data += block.pre_hash
         chain.append(block.data)
         with open ("block-data.json", "w") as f:
             f.write(json.dumps(chain , indent=4))
@@ -175,3 +180,5 @@ def result():
 
 if __name__ == "__main__":
     app.run(host:="0.0.0.0", port:=int(os.environ.get('PORT', 5000)))
+    
+    

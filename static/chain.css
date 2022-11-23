@@ -42,16 +42,6 @@ body{
 
 }
 
-.iq {
-    border: 2px solid rgb(180, 0, 100);
-    border-radius: 30px;
-    padding: 1em;
-    font-size: 24;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.74);
-    font-weight: lighter;
-    color: rgb(0, 255, 170);
-}
 
 .let_space1{
     text-align: center;
@@ -64,15 +54,3 @@ body{
     background: rgba(0, 0, 0, 0.651);
     color: rgb(0, 255, 170);
 }
-
-.file_submit{
-    position: relative;
-    width: 30vh;
-    height: 40px;
-    font-size: 20px;
-    background: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    color: #000;
-    border: 2px solid rgb(255, 0, 140);
-    border-radius: 25px;

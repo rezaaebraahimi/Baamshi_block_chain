@@ -10,10 +10,11 @@ class Person():
         self.mbti = str(mbti)
 
 
+
 class Blockchain():
-    chain = []
-    
-    
+    chain = {"Block" : [] }
+
+
 
 class Block():
     def __init__(self, data=None,pre_hash = "0" *64):

@@ -1,16 +1,15 @@
 from flask import Flask, render_template, request
 import os
 import Blockchain as B
-import json
+from pymongo import MongoClient
 
 app = Flask(__name__)   
+client = MongoClient("mongodb+srv://baamshi2:baamshiaireza@webapp01.x49pchm.mongodb.net/test")
+db = client.BaamshiBlockchain
 
 
 chain = B.Blockchain.chain
-genesis = ["Genesis", "First Block", "0", "160","Genius","0"*64, "Ready"]
-chain.append(genesis)
 
-   
 low_iq = list(range(40, 70, 1))
 average_iq = list(range(70, 120, 1))
 hi_iq = list(range(120, 161, 1))
@@ -169,12 +168,15 @@ def result():
     for data in block.data:
         block_hash = [block.hash()]
         block.data += block_hash
-        block.pre_hash = [chain[-1][-2]]
-        block.data += block.pre_hash
-        chain.append(block.data)
-        with open ("block-data.json", "w") as f:
-            f.write(json.dumps(chain , indent=4))
+        chain["Block"] = block.data
         return render_template("result.html", database=block.data,iq_level=iq_level,job_offer=job_offer)
+           
+           
+@app.route('/chain',methods=['POST', 'GET'])
+def full_chain():
+    db.chain_1.insert_one(chain)
+    for _block in db.chain_1.find({}):
+        return render_template("chain.html",_chain=chain)
     
 
 

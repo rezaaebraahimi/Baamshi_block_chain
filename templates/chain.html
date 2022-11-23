@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../static/chain.css" />
+  </head>
+
+  <body>
+
+      
+      <form class="grid" action="/result" method="POST">
+        <header>
+          <h1 class="baamshi">Baamshi Blockchain</h1>
+  
+        </header>
+
+      {% if _chain %}
+        <p class="let_space1">Hey, This is Full Chain..! </p> <br>
+        <div class="let_space">
+          <p> {{ _chain }} </p>
+
+        </div>
+      {% endif %}
+
+      </form>
+
+    <br />
+    <br />
+    <br />
+  </body>
+</html>

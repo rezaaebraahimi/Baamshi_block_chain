@@ -8,7 +8,7 @@
   <body>
 
       
-      <form class="grid" action="/result" method="POST">
+      <form class="grid" action="/chain" method="POST">
         <header>
           <h1 class="baamshi">Baamshi Blockchain</h1>
   
@@ -17,16 +17,15 @@
       {% if database %}
         <p class="let_space1">Thank you {{ database[0] }} {{ database[1] }}! <br> Your info successfully encrypted!</p>
         <div class="let_space">
-            <p>Age: {{ database[2] }}</p>
-            <p>IQ Score: {{ database[3] }}</p>
-            <p>Personality Type (MBTI): {{ database[4] }}</p>
             <p>Hash: {{ database[5] }}</p>
+            
         </div>
       {% endif %}
 
       {% if iq_level and job_offer %}
         <p class="iq"> {{ iq_level }} <br> Job titles that proper for you based on your MBTI and IQ : {{ job_offer }} </p>
       {% endif %}
+        <input class="file_submit" type="Submit"/>
       </form>
 
     <br />

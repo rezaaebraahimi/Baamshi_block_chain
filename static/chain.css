@@ -5,7 +5,7 @@ html{
     height: 100vh;
 }
 body{
-    background-color: rgba(127, 146, 255, 0.397);
+    background-color: rgba(0, 21, 139, 0.397);
     align-items: center;
 }
 
@@ -46,11 +46,11 @@ body{
 .let_space1{
     text-align: center;
     align-items: center;
-    border: 1px solid rgb(180, 0, 100);
+    border: 1px solid rgb(0, 180, 125);
     border-radius: 50px;
     padding: 0.1em;
     overflow: hidden;
     font-size: 36;
     background: rgba(0, 0, 0, 0.651);
-    color: rgb(0, 255, 170);
+    color: rgb(180, 0, 100);
 }

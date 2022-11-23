@@ -2,9 +2,12 @@ from flask import Flask, render_template, request
 import os
 import Blockchain as B
 from pymongo import MongoClient
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)   
-client = MongoClient("mongodb+srv://baamshi2:baamshiaireza@webapp01.x49pchm.mongodb.net/test")
+client = MongoClient(os.environ.get("MONGODB_URI"))
 db = client.BaamshiBlockchain
 
 

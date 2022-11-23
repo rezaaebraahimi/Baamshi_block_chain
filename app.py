@@ -175,7 +175,7 @@ def result():
 @app.route('/chain',methods=['POST', 'GET'])
 def full_chain():
     db.chain_1.insert_one(chain)
-    for _block in db.chain_1.find({}):
+    for key, value in db.chain_1.find({}):
         return render_template("chain.html",_chain=chain)
     
 

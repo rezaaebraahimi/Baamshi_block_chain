@@ -11,9 +11,9 @@ body{
 
 .baamshi{
     align-items: center;
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: lighter;
@@ -24,9 +24,9 @@ body{
 
 #text {
     align-items: center;
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: lighter;
@@ -48,8 +48,8 @@ input{
     text-align: center;
     align-items: center;
     display: block;
-    width: 30vh;
-    height: 40px;
+    width: 17.41rem;
+    height: 3rem;
     background: #fff;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -63,8 +63,8 @@ input{
 }
 .file_submit{
     position: relative;
-    width: 30vh;
-    height: 40px;
+    width: 7.5rem;
+    height: 2rem;
     font-size: 20px;
     background: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -72,12 +72,16 @@ input{
     color: #000;
     border: 2px solid rgb(255, 0, 140);
     border-radius: 25px;
+    cursor: pointer;
+}
+.file_submit:hover{
+    background-color: coral;
 }
 label{
     background: #000;
     display: block;
-    width: 30vh;
-    height: 30px;
+    width: 17.41rem;
+    height: 1.7rem;
     align-items: center;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

@@ -12,16 +12,25 @@ db = client.BaamshiBlockchain
 chain = B.Blockchain.chain
 
 
+<<<<<<< HEAD
     # IQ level range
+=======
+    ### IQ level range ###
+>>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
 
 low_iq = list(range(40, 70, 1))
 average_iq = list(range(70, 120, 1))
 hi_iq = list(range(120, 161, 1))
 
 
+<<<<<<< HEAD
    
     # Possible job offers for each personality type 
 
+=======
+    ### Possible job offers based on mbti ###
+    
+>>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
 istj = ["Business Analyst or Supply Chain Manager", "Dentist", "Accountant"]
 infj = ["Scientist or Author", "Psychologist", "Consultant or Librarian"]
 intj = ["Financial Advisor or Musician", "Marketing Manager or Physiotherapist", "Photographer or Editor or Teacher"]
@@ -40,27 +49,42 @@ entp = ["Creative Director or Financial Planner","System Analyst or Lawyer","Ope
 isfp = ["Social Network Manager or Archaeologist","Glasses Maker or Veterinarian","Librarian or Occupational Therapist"]
 
 
+
 @app.route("/")
 @app.route('/home')
 def home():
     return render_template("index.html")
 
 
+<<<<<<< HEAD
     # Main function
 
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     output = request.form.to_dict()
     # user info
+=======
+    ### Main function ###
+    
+@app.route('/result',methods=['POST', 'GET'])
+def result():
+    output = request.form.to_dict()
+        
+        ### user information ###
+>>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
     person = B.Person(name = output["name"],
                       family = output["family"],
                       age = int(output["age"]),
                       iq = int(output["iq"]),
                       mbti = output["mbti"].lower())
     
+<<<<<<< HEAD
     
     # find IQ level
     
+=======
+        ### find IQ level of user ###
+>>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
     if person.iq in low_iq:
         iq_level = "Your IQ  Level is LOW!!!"
     elif person.iq in average_iq:
@@ -70,9 +94,13 @@ def result():
     else:
         iq_level = "Your IQ Level is not in human range!"
 
+<<<<<<< HEAD
     
     # find job offer based on MBTI and IQ
     
+=======
+        ### find job offer based on mbti and users iq level ###
+>>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
     if person.mbti == "istj" and person.iq in low_iq:
         job_offer = istj[2]
     elif person.mbti == "istj" and person.iq in average_iq:
@@ -176,29 +204,27 @@ def result():
     # put user info in a block
     
     block = B.Block()
+        ### Put user info into the block ###
     block.data = [f"{person.name}",
             f"{person.family}",
             f"{person.age}",
             f"{person.iq}",
             f"{person.mbti}"]
     
+<<<<<<< HEAD
     
     # complete block information
     
+=======
+        ### Complete Block info ###
+>>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
     for data in block.data:
         block_hash = [block.hash()]
         block.data += block_hash
         chain["Block"] = block.data
         return render_template("result.html", database=block.data,iq_level=iq_level,job_offer=job_offer)
-           
-           
-@app.route('/chain',methods=['POST', 'GET'])
-def full_chain():
-    db.chain_1.insert_one(chain)
-    for key, value in db.chain_1.find({}):
-        return render_template("chain.html",_chain=chain)
-    
+                   
 
-
+    ### Run app ###
 if __name__ == "__main__":
     app.run(host:="0.0.0.0", port:=int(os.environ.get('PORT', 5000)))

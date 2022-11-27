@@ -12,25 +12,15 @@ db = client.BaamshiBlockchain
 chain = B.Blockchain.chain
 
 
-<<<<<<< HEAD
-    # IQ level range
-=======
     ### IQ level range ###
->>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
 
 low_iq = list(range(40, 70, 1))
 average_iq = list(range(70, 120, 1))
 hi_iq = list(range(120, 161, 1))
 
 
-<<<<<<< HEAD
-   
-    # Possible job offers for each personality type 
-
-=======
     ### Possible job offers based on mbti ###
     
->>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
 istj = ["Business Analyst or Supply Chain Manager", "Dentist", "Accountant"]
 infj = ["Scientist or Author", "Psychologist", "Consultant or Librarian"]
 intj = ["Financial Advisor or Musician", "Marketing Manager or Physiotherapist", "Photographer or Editor or Teacher"]
@@ -56,14 +46,9 @@ def home():
     return render_template("index.html")
 
 
-<<<<<<< HEAD
-    # Main function
 
-@app.route('/result',methods=['POST', 'GET'])
-def result():
-    output = request.form.to_dict()
-    # user info
-=======
+
+    
     ### Main function ###
     
 @app.route('/result',methods=['POST', 'GET'])
@@ -71,20 +56,13 @@ def result():
     output = request.form.to_dict()
         
         ### user information ###
->>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
     person = B.Person(name = output["name"],
                       family = output["family"],
                       age = int(output["age"]),
                       iq = int(output["iq"]),
                       mbti = output["mbti"].lower())
     
-<<<<<<< HEAD
-    
-    # find IQ level
-    
-=======
         ### find IQ level of user ###
->>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
     if person.iq in low_iq:
         iq_level = "Your IQ  Level is LOW!!!"
     elif person.iq in average_iq:
@@ -94,13 +72,9 @@ def result():
     else:
         iq_level = "Your IQ Level is not in human range!"
 
-<<<<<<< HEAD
-    
-    # find job offer based on MBTI and IQ
-    
-=======
+        
         ### find job offer based on mbti and users iq level ###
->>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
+
     if person.mbti == "istj" and person.iq in low_iq:
         job_offer = istj[2]
     elif person.mbti == "istj" and person.iq in average_iq:
@@ -200,8 +174,6 @@ def result():
     else:
         job_offer = "Your mbti isn't true, please Try Again!"
 
-
-    # put user info in a block
     
     block = B.Block()
         ### Put user info into the block ###
@@ -211,13 +183,9 @@ def result():
             f"{person.iq}",
             f"{person.mbti}"]
     
-<<<<<<< HEAD
-    
-    # complete block information
-    
-=======
+
         ### Complete Block info ###
->>>>>>> 41dcbeefef429ca11a664a3663e37cda99da9161
+
     for data in block.data:
         block_hash = [block.hash()]
         block.data += block_hash

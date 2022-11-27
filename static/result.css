@@ -64,20 +64,3 @@ body{
     background: rgba(0, 0, 0, 0.651);
     color: rgb(0, 255, 170);
 }
-
-.file_submit{
-    position: relative;
-    width: 7.5rem;
-    height: 2rem;
-    font-size: 20px;
-    background: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    color: #000;
-    border: 2px solid rgb(255, 0, 140);
-    border-radius: 25px;
-    cursor: pointer;
-}
-.file_submit:hover{
-    background-color: coral;
-}

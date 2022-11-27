@@ -9,14 +9,18 @@ load_dotenv()
 app = Flask(__name__)   
 client = MongoClient(os.environ.get("MONGODB_URI"))
 db = client.BaamshiBlockchain
-
-
 chain = B.Blockchain.chain
+
+
+    # IQ level range
 
 low_iq = list(range(40, 70, 1))
 average_iq = list(range(70, 120, 1))
 hi_iq = list(range(120, 161, 1))
 
+
+   
+    # Possible job offers for each personality type 
 
 istj = ["Business Analyst or Supply Chain Manager", "Dentist", "Accountant"]
 infj = ["Scientist or Author", "Psychologist", "Consultant or Librarian"]
@@ -42,15 +46,21 @@ def home():
     return render_template("index.html")
 
 
+    # Main function
+
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     output = request.form.to_dict()
+    # user info
     person = B.Person(name = output["name"],
                       family = output["family"],
                       age = int(output["age"]),
                       iq = int(output["iq"]),
                       mbti = output["mbti"].lower())
-     
+    
+    
+    # find IQ level
+    
     if person.iq in low_iq:
         iq_level = "Your IQ  Level is LOW!!!"
     elif person.iq in average_iq:
@@ -60,6 +70,9 @@ def result():
     else:
         iq_level = "Your IQ Level is not in human range!"
 
+    
+    # find job offer based on MBTI and IQ
+    
     if person.mbti == "istj" and person.iq in low_iq:
         job_offer = istj[2]
     elif person.mbti == "istj" and person.iq in average_iq:
@@ -159,6 +172,8 @@ def result():
     else:
         job_offer = "Your mbti isn't true, please Try Again!"
 
+
+    # put user info in a block
     
     block = B.Block()
     block.data = [f"{person.name}",
@@ -167,6 +182,8 @@ def result():
             f"{person.iq}",
             f"{person.mbti}"]
     
+    
+    # complete block information
     
     for data in block.data:
         block_hash = [block.hash()]

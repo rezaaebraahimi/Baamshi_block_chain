@@ -9,15 +9,18 @@ load_dotenv()
 app = Flask(__name__)   
 client = MongoClient(os.environ.get("MONGODB_URI"))
 db = client.BaamshiBlockchain
-
-
 chain = B.Blockchain.chain
+
+
+    ### IQ level range ###
 
 low_iq = list(range(40, 70, 1))
 average_iq = list(range(70, 120, 1))
 hi_iq = list(range(120, 161, 1))
 
 
+    ### Possible job offers based on mbti ###
+    
 istj = ["Business Analyst or Supply Chain Manager", "Dentist", "Accountant"]
 infj = ["Scientist or Author", "Psychologist", "Consultant or Librarian"]
 intj = ["Financial Advisor or Musician", "Marketing Manager or Physiotherapist", "Photographer or Editor or Teacher"]
@@ -36,21 +39,27 @@ entp = ["Creative Director or Financial Planner","System Analyst or Lawyer","Ope
 isfp = ["Social Network Manager or Archaeologist","Glasses Maker or Veterinarian","Librarian or Occupational Therapist"]
 
 
+
 @app.route("/")
 @app.route('/home')
 def home():
     return render_template("index.html")
 
 
+    ### Main function ###
+    
 @app.route('/result',methods=['POST', 'GET'])
 def result():
     output = request.form.to_dict()
+        
+        ### user information ###
     person = B.Person(name = output["name"],
                       family = output["family"],
                       age = int(output["age"]),
                       iq = int(output["iq"]),
                       mbti = output["mbti"].lower())
-     
+    
+        ### find IQ level of user ###
     if person.iq in low_iq:
         iq_level = "Your IQ  Level is LOW!!!"
     elif person.iq in average_iq:
@@ -60,6 +69,7 @@ def result():
     else:
         iq_level = "Your IQ Level is not in human range!"
 
+        ### find job offer based on mbti and users iq level ###
     if person.mbti == "istj" and person.iq in low_iq:
         job_offer = istj[2]
     elif person.mbti == "istj" and person.iq in average_iq:
@@ -161,27 +171,21 @@ def result():
 
     
     block = B.Block()
+        ### Put user info into the block ###
     block.data = [f"{person.name}",
             f"{person.family}",
             f"{person.age}",
             f"{person.iq}",
             f"{person.mbti}"]
     
-    
+        ### Complete Block info ###
     for data in block.data:
         block_hash = [block.hash()]
         block.data += block_hash
         chain["Block"] = block.data
         return render_template("result.html", database=block.data,iq_level=iq_level,job_offer=job_offer)
-           
-           
-@app.route('/chain',methods=['POST', 'GET'])
-def full_chain():
-    db.chain_1.insert_one(chain)
-    for key, value in db.chain_1.find({}):
-        return render_template("chain.html",_chain=chain)
-    
+                   
 
-
+    ### Run app ###
 if __name__ == "__main__":
     app.run(host:="0.0.0.0", port:=int(os.environ.get('PORT', 5000)))
